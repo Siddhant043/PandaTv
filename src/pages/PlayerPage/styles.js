@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const PlayerPageContainer = styled.div`
-  width: 100%;
   padding: 0px 30px;
   display: flex;
   flex-direction: column;
@@ -15,28 +14,72 @@ export const VideoContainer = styled.div`
   justify-content: center;
 `;
 
-export const ControlsContainer = styled.div`
+export const ControlContainer = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 1;
 `;
 
-export const GridContainer = styled.div`
+export const VideoHeading = styled.div`
+  padding: 16px;
+  font-size: 24px;
+  color: #fff;
+`;
+
+export const MiddleControlsContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: center;
+`;
+
+export const BottomControlsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 16px;
 `;
 
-export const GridItem = styled.div`
-  > span {
-    font-size: 24px;
-    color: #fff;
+export const BottomGridContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+export const VolumeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 200px;
+`;
+
+export const VideoTime = styled.span`
+  color: #fff;
+  margin-left: 30px;
+  cursor: pointer;
+`;
+
+export const LeftControls = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const RightControls = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const SpeedControlsWrapper = styled.span`
+  font-weight: 800;
+  color: grey !important;
+  cursor: pointer;
+  &:hover {
+    color: #fff !important;
   }
 `;

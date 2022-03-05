@@ -2,17 +2,26 @@ import React from "react";
 import ReactPlayer from "react-player";
 import Navbar from "../../components/Navbar";
 import {
-  ControlsContainer,
+  BottomControlsContainer,
+  BottomGridContainer,
+  ControlContainer,
   GridContainer,
-  GridItem,
+  LeftControls,
+  MiddleControlsContainer,
   PlayerPageContainer,
+  RightControls,
+  SpeedControlsWrapper,
   VideoContainer,
+  VideoHeading,
+  VideoTime,
+  VolumeWrapper,
 } from "./styles";
 import IconButton from "@mui/material/IconButton";
 import FastRewindIcon from "@material-ui/icons/FastRewind";
 import FastForwardIcon from "@material-ui/icons/FastForward";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+import FullScreenIcon from "@mui/icons-material/Fullscreen";
 import styled from "styled-components";
 import { styled as withStyled } from "@mui/material/styles";
 import Slider, { SliderThumb } from "@mui/material/Slider";
@@ -23,7 +32,6 @@ import { videoData } from "../../utils/data";
 
 const IconButtonWrapper = styled(IconButton)`
   color: "#fff";
-  font-size: 50px;
   transform: scale(0.9);
   &:hover {
     color: #fff;
@@ -32,9 +40,9 @@ const IconButtonWrapper = styled(IconButton)`
 `;
 
 const BottomIcons = styled(IconButton)`
-  color: #999;
+  color: grey !important;
   &:hover {
-    color: #fff;
+    color: #fff !important;
   }
 `;
 
@@ -76,9 +84,7 @@ const PrettoSlider = withStyled(Slider)({
   },
 });
 
-const VolumeSlider = styled(Slider)`
-  width: 100px;
-`;
+const VolumeSlider = styled(Slider)``;
 
 function ValueLabelComponent(props) {
   const { children, value } = props;
@@ -94,7 +100,6 @@ const PlayerPage = () => {
   const { videoId } = useParams();
   console.log(videoId);
   const video = videoData.filter((video) => video.id === Number(videoId))[0];
-  console.log(video);
 
   return (
     <>
@@ -106,55 +111,58 @@ const PlayerPage = () => {
             height={"100%"}
             url={video.videoSrc}
             muted={false}
-            playing={true}
+            playing={false}
           />
-          <ControlsContainer>
-            {/*top controls*/}
-            <GridContainer style={{ justifyContent: "space-between" }}>
-              <GridItem>
-                <span>{video.name}</span>
-              </GridItem>
-            </GridContainer>
-            {/*middle controls*/}
-            <GridContainer style={{ justifyContent: "center" }}>
-              <IconButtonWrapper aria-label="required">
-                <FastRewindIcon fontSize="inherit" />
-              </IconButtonWrapper>
-              <IconButtonWrapper aria-label="required">
-                <PlayArrowIcon fontSize="inherit" />
-              </IconButtonWrapper>
-              <IconButtonWrapper aria-label="required">
-                <FastForwardIcon fontSize="inherit" />
-              </IconButtonWrapper>
-            </GridContainer>
 
-            {/*bottom controls */}
-            <GridContainer
-              style={{
-                justifyContent: "space-between",
-                padding: "16",
-              }}
-            ></GridContainer>
-            <GridItem>
+          <ControlContainer>
+            {/*top controls*/}
+            <VideoHeading>{video.name}</VideoHeading>
+            <MiddleControlsContainer>
+              <IconButtonWrapper>
+                <FastRewindIcon style={{ fontSize: "50px" }} />
+              </IconButtonWrapper>
+              <IconButtonWrapper>
+                <PlayArrowIcon style={{ fontSize: "100px" }} />
+              </IconButtonWrapper>
+              <IconButtonWrapper>
+                <FastForwardIcon style={{ fontSize: "50px" }} />
+              </IconButtonWrapper>
+            </MiddleControlsContainer>
+            <BottomControlsContainer>
               <PrettoSlider
                 min={0}
                 max={100}
                 defaultValue={20}
                 ValueLabelComponent={ValueLabelComponent}
               />
-            </GridItem>
-            <GridItem>
-              <GridContainer>
-                <BottomIcons>
-                  <PlayArrowIcon fontSize="large" />
-                </BottomIcons>
-                <BottomIcons>
-                  <VolumeUpIcon fontSize="large" />
-                </BottomIcons>
-                <VolumeSlider min={0} max={100} defaultValue={100} />
-              </GridContainer>
-            </GridItem>
-          </ControlsContainer>
+
+              <BottomGridContainer>
+                <LeftControls>
+                  <BottomIcons>
+                    <PlayArrowIcon style={{ fontSize: "30px" }} />
+                  </BottomIcons>
+                  <VolumeWrapper>
+                    <BottomIcons>
+                      <VolumeUpIcon style={{ fontSize: "30px" }} />
+                    </BottomIcons>
+                    <VolumeSlider
+                      min={0}
+                      max={100}
+                      defaultValue={100}
+                      width={100}
+                    />
+                  </VolumeWrapper>
+                  <VideoTime>05:05</VideoTime>
+                </LeftControls>
+                <RightControls>
+                  <SpeedControlsWrapper>1X</SpeedControlsWrapper>
+                  <BottomIcons>
+                    <FullScreenIcon style={{ fontSize: "30px" }} />
+                  </BottomIcons>
+                </RightControls>
+              </BottomGridContainer>
+            </BottomControlsContainer>
+          </ControlContainer>
         </VideoContainer>
       </PlayerPageContainer>
     </>
