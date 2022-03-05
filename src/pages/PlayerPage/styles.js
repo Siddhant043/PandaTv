@@ -77,9 +77,24 @@ export const RightControls = styled.div`
 
 export const SpeedControlsWrapper = styled.span`
   font-weight: 800;
-  color: grey !important;
+  color: grey;
   cursor: pointer;
   &:hover {
-    color: #fff !important;
+    color: #fff;
+  }
+`;
+
+export const PopoverValueContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 10px;
+
+  > span {
+    color: grey;
+    font-weight: 800;
+    cursor: pointer;
+    &:hover {
+      color: #000;
+    }
   }
 `;
