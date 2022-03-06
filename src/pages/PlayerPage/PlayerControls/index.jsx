@@ -94,7 +94,13 @@ function ValueLabelComponent(props) {
 
 // styled-components end
 
-const PlayerControls = ({ video }) => {
+const PlayerControls = ({
+  video,
+  onPlayPause,
+  playing,
+  onRewind,
+  onFastForward,
+}) => {
   // Popover code
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -114,17 +120,31 @@ const PlayerControls = ({ video }) => {
     <ControlContainer>
       {/*top controls*/}
       <VideoHeading>{video.name}</VideoHeading>
+      {/*top controls */}
+      {/*middle controls */}
       <MiddleControlsContainer>
         <IconButtonWrapper>
-          <FastRewindIcon style={{ fontSize: "50px" }} />
+          <FastRewindIcon onClick={onRewind} style={{ fontSize: "50px" }} />
         </IconButtonWrapper>
         <IconButtonWrapper>
-          <PlayArrowIcon style={{ fontSize: "100px" }} />
+          {!playing ? (
+            <PlayArrowIcon
+              onClick={onPlayPause}
+              style={{ fontSize: "100px" }}
+            />
+          ) : (
+            <PauseIcon onClick={onPlayPause} style={{ fontSize: "100px" }} />
+          )}
         </IconButtonWrapper>
         <IconButtonWrapper>
-          <FastForwardIcon style={{ fontSize: "50px" }} />
+          <FastForwardIcon
+            onClick={onFastForward}
+            style={{ fontSize: "50px" }}
+          />
         </IconButtonWrapper>
       </MiddleControlsContainer>
+      {/*middle controls */}
+      {/*bottom controls */}
       <BottomControlsContainer>
         <PrettoSlider
           min={0}
@@ -136,7 +156,14 @@ const PlayerControls = ({ video }) => {
         <BottomGridContainer>
           <LeftControls>
             <BottomIcons>
-              <PlayArrowIcon style={{ fontSize: "30px" }} />
+              {!playing ? (
+                <PlayArrowIcon
+                  onClick={onPlayPause}
+                  style={{ fontSize: "30px" }}
+                />
+              ) : (
+                <PauseIcon onClick={onPlayPause} style={{ fontSize: "30px" }} />
+              )}
             </BottomIcons>
             <VolumeWrapper>
               <BottomIcons>
@@ -176,6 +203,7 @@ const PlayerControls = ({ video }) => {
           </RightControls>
         </BottomGridContainer>
       </BottomControlsContainer>
+      {/*bottom controls */}
     </ControlContainer>
   );
 };

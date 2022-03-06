@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import Navbar from "../../components/Navbar";
 import { PlayerPageContainer, VideoContainer } from "./styles";
@@ -12,20 +12,43 @@ const PlayerPage = () => {
   console.log(videoId);
   const video = videoData.filter((video) => video.id === Number(videoId))[0];
 
+  // video controls
+  const [state, setState] = useState({
+    playing: true,
+  });
+  const { playing } = state;
+  const playerRef = useRef(null);
+  const handlePlayPause = () => {
+    setState({ ...state, playing: !state.playing });
+  };
+  const handleRewind = () => {
+    playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10);
+  };
+  const handleFastForward = () => {
+    playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10);
+  };
+
   return (
     <>
       <Navbar />
       <PlayerPageContainer>
         <VideoContainer>
           <ReactPlayer
+            ref={playerRef}
             width={"100%"}
             height={"100%"}
             url={video.videoSrc}
             muted={false}
-            playing={false}
+            playing={playing}
           />
 
-          <PlayerControls video={video} />
+          <PlayerControls
+            video={video}
+            onPlayPause={handlePlayPause}
+            playing={playing}
+            onRewind={handleRewind}
+            onFastForward={handleFastForward}
+          />
         </VideoContainer>
       </PlayerPageContainer>
     </>
