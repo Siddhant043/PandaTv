@@ -25,7 +25,7 @@ const format = (seconds) => {
 
 const PlayerPage = () => {
   const { videoId } = useParams();
-  console.log(videoId);
+  const [showControls, setShowControls] = useState(false);
   const video = videoData.filter((video) => video.id === Number(videoId))[0];
 
   // video controls
@@ -107,7 +107,7 @@ const PlayerPage = () => {
     <>
       <Navbar />
       <PlayerPageContainer>
-        <VideoContainer ref={playerContainerRef}>
+        <VideoContainer ref={playerContainerRef} onClick={handlePlayPause} onMouseEnter={() => setShowControls(true)} onMouseLeave={() => setShowControls(false)}>
           <ReactPlayer
             ref={playerRef}
             width={"100%"}
@@ -120,7 +120,8 @@ const PlayerPage = () => {
             onProgress={handleProgress}
           />
 
-          <PlayerControls
+          {showControls && (
+            <PlayerControls
             video={video}
             onPlayPause={handlePlayPause}
             playing={playing}
@@ -141,6 +142,7 @@ const PlayerPage = () => {
             elapsedTime={elapsedTime}
             totalDuration={totalDuration}
           />
+          )}
         </VideoContainer>
       </PlayerPageContainer>
     </>
