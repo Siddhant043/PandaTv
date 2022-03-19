@@ -22,6 +22,7 @@ import PauseIcon from "@mui/icons-material/Pause";
 import FullScreenIcon from "@mui/icons-material/Fullscreen";
 import Popover from "@mui/material/Popover";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import Slider, { SliderThumb } from "@mui/material/Slider";
 import { Tooltip } from "@mui/material";
 
@@ -100,6 +101,20 @@ const PlayerControls = ({
   playing,
   onRewind,
   onFastForward,
+  muted,
+  onMute,
+  onVolumeChange,
+  onVolumeSeekUp,
+  volume,
+  playbackRate,
+  onPlaybackRateChange,
+  onToggleFullScreen,
+  played,
+  onSeek,
+  onSeekMouseDown,
+  onSeekMouseUp,
+  elapsedTime,
+  totalDuration,
 }) => {
   // Popover code
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -149,8 +164,11 @@ const PlayerControls = ({
         <PrettoSlider
           min={0}
           max={100}
-          defaultValue={20}
+          value={played * 100}
           ValueLabelComponent={ValueLabelComponent}
+          onChange={onSeek}
+          onMouseDown={onSeekMouseDown}
+          onChangeCommitted={onSeekMouseUp}
         />
 
         <BottomGridContainer>
@@ -167,15 +185,31 @@ const PlayerControls = ({
             </BottomIcons>
             <VolumeWrapper>
               <BottomIcons>
-                <VolumeUpIcon style={{ fontSize: "30px" }} />
+                {muted ? (
+                  <VolumeOffIcon
+                    onClick={onMute}
+                    style={{ fontSize: "30px" }}
+                  />
+                ) : (
+                  <VolumeUpIcon onClick={onMute} style={{ fontSize: "30px" }} />
+                )}
               </BottomIcons>
-              <VolumeSlider min={0} max={100} defaultValue={100} width={100} />
+              <VolumeSlider
+                min={0}
+                max={100}
+                width={100}
+                onChange={onVolumeChange}
+                onChangeCommitted={onVolumeSeekUp}
+                value={volume * 100}
+              />
             </VolumeWrapper>
-            <VideoTime>05:05</VideoTime>
+            <VideoTime>
+              {elapsedTime}/{totalDuration}
+            </VideoTime>
           </LeftControls>
           <RightControls>
             <SpeedControlsWrapper onClick={handlePopover}>
-              1X
+              {playbackRate}X
             </SpeedControlsWrapper>
             <Popover
               id={id}
@@ -193,12 +227,17 @@ const PlayerControls = ({
             >
               <PopoverValueContainer>
                 {[0.5, 1, 1.5, 2].map((rate) => (
-                  <span key={rate}>{rate}</span>
+                  <span onClick={() => onPlaybackRateChange(rate)} key={rate}>
+                    {rate}
+                  </span>
                 ))}
               </PopoverValueContainer>
             </Popover>
             <BottomIcons>
-              <FullScreenIcon style={{ fontSize: "30px" }} />
+              <FullScreenIcon
+                onClick={onToggleFullScreen}
+                style={{ fontSize: "30px" }}
+              />
             </BottomIcons>
           </RightControls>
         </BottomGridContainer>

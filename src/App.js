@@ -27,7 +27,7 @@ function App() {
       <Route path="/home" element={<HomePage />} />
       <Route path="/login" exact element={<Login />} />
       <Route path="/home/:videoId" element={<PlayerPage />} />
-      <Route path="settings" element={<Settings />} />
+      <Route path="/settings" element={<Settings />} />
     </Routes>
   );
 }
