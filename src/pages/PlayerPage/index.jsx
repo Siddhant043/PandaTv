@@ -107,7 +107,7 @@ const PlayerPage = () => {
     <>
       <Navbar />
       <PlayerPageContainer>
-        <VideoContainer ref={playerContainerRef} onClick={handlePlayPause} onMouseEnter={() => setShowControls(true)} onMouseLeave={() => setShowControls(false)}>
+        <VideoContainer ref={playerContainerRef} onMouseOver={() => setShowControls(true)} onMouseLeave={() => setShowControls(false)}>
           <ReactPlayer
             ref={playerRef}
             width={"100%"}
@@ -119,7 +119,6 @@ const PlayerPage = () => {
             playbackRate={playbackRate}
             onProgress={handleProgress}
           />
-
           {showControls && (
             <PlayerControls
             video={video}

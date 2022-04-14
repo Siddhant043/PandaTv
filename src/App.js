@@ -6,10 +6,13 @@ import HomePage from "./pages/HomePage";
 import Settings from "./pages/Settings";
 import PlayerPage from "./pages/PlayerPage";
 import { useSelector } from "react-redux";
+import { fetchUser } from "./utils/fetchUser";
+import Explore from "./pages/Explore";
 
 function App() {
-  const user = useSelector((state) => state.user?.user);
+  const user = fetchUser();
   const navigate = useNavigate();
+ 
 
   useEffect(() => {
     function checkUser() {
@@ -20,14 +23,15 @@ function App() {
       }
     }
     return checkUser();
-  }, [user]);
+  }, []);
 
   return (
     <Routes>
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/login" exact element={<Login />} />
-      <Route path="/home/:videoId" element={<PlayerPage />} />
-      <Route path="/settings" element={<Settings />} />
+      <Route exact path="/home" element={<HomePage />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/home/:videoId" element={<PlayerPage />} />
+      <Route exact path="/explore" element={<Explore />} />
+      <Route exact path="/settings" element={<Settings />} />
     </Routes>
   );
 }

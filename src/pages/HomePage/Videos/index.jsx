@@ -7,7 +7,7 @@ const Videos = () => {
   return (
     <VideoContainer>
       <HeadingContainer>Videos</HeadingContainer>
-      <CardsSection>
+      <CardsSection container spacing={2} xs={10} mt={4}>
         {videoData.map((item) => (
           <Card
             key={item.id}

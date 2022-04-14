@@ -47,6 +47,9 @@ const Navbar = () => {
           <SettingsWrapper onClick={() => navigate("/settings")}>
             Settings
           </SettingsWrapper>
+          <SettingsWrapper onClick={() => navigate("/explore")}>
+            Explore
+          </SettingsWrapper>
           <LogoutWrapper onClick={() => handleLogout()}>Log out</LogoutWrapper>
         </DropDownMenu>
       )}

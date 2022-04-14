@@ -1,13 +1,11 @@
+import { Grid } from "@mui/material";
 import styled from "styled-components";
 
-export const CardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+export const CardWrapper = styled(Grid)`
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(Grid)`
   height: 300px;
-  width: 200px;
   border-radius: 20px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
   margin-bottom: 20px;
