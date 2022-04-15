@@ -6,13 +6,16 @@ import {
   LogoIcon,
   LogoutWrapper,
   NavbarContainer,
+  NavOptions,
+  SecondContainer,
   SettingsWrapper,
+  StyledLink,
   UserContainer,
 } from "./styles";
 import Logo from "../../assets/panda.svg";
 import { useDispatch } from "react-redux";
 import { logout } from "../../features/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchUser } from "../../utils/fetchUser";
 
 const Navbar = () => {
@@ -34,22 +37,27 @@ const Navbar = () => {
   };
 
   return (
-    <NavbarContainer>
-      <LogoContainer onClick={() => navigate("/home")}>
+    <NavbarContainer container xs={12}>
+      <LogoContainer container item xs={6} onClick={() => navigate("/home")}>
         <LogoIcon src={Logo} alt="Logo" />
         <span>Panda</span>
       </LogoContainer>
-      <UserContainer onClick={() => handleDropdown()}>
+      <SecondContainer container item xs={6}>
+        <NavOptions container item xs={10}>
+          <StyledLink to="/settings">
+            Settings
+          </StyledLink>
+          <StyledLink to="/explore">
+            Explore
+          </StyledLink>
+        </NavOptions>
+      <UserContainer xs={2} onClick={() => handleDropdown()}>
         <AvatarImageContainer src={userData.imageUrl} alt={userData.name} />
       </UserContainer>
+      </SecondContainer>
+      
       {showDropdown && (
         <DropDownMenu>
-          <SettingsWrapper onClick={() => navigate("/settings")}>
-            Settings
-          </SettingsWrapper>
-          <SettingsWrapper onClick={() => navigate("/explore")}>
-            Explore
-          </SettingsWrapper>
           <LogoutWrapper onClick={() => handleLogout()}>Log out</LogoutWrapper>
         </DropDownMenu>
       )}

@@ -12,6 +12,7 @@ export const VideoContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  z-index: 100;
 `;
 
 export const ControlContainer = styled.div`

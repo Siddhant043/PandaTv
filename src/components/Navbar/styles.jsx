@@ -1,16 +1,14 @@
+import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const NavbarContainer = styled.div`
-  display: flex;
+export const NavbarContainer = styled(Grid)`
   justify-content: space-between;
-  align-items: center;
   padding: 20px 30px;
   position: relative;
 `;
 
-export const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
+export const LogoContainer = styled(Grid)`
   cursor: pointer;
   > span {
     font-size: 1.5rem;
@@ -22,7 +20,7 @@ export const LogoIcon = styled.img`
   height: 30px;
 `;
 
-export const UserContainer = styled.div`
+export const UserContainer = styled(Grid)`
   cursor: pointer;
 `;
 
@@ -59,4 +57,32 @@ export const LogoutWrapper = styled.span`
   font-weight: 400;
   cursor: pointer;
   color: red;
+`;
+
+
+export const SecondContainer = styled(Grid)`
+
+`;
+
+export const NavOptions = styled(Grid)`
+  justify-content: space-evenly;
+  padding-top: 10px;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  display: inline-block;
+  color: #000;
+  &::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #215bfc;
+    transition: width .3s;
+  }
+  &:hover::after {
+    width: 100%;
+    //transition: width .3s;
+  }
 `;

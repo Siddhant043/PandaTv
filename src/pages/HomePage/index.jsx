@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar";
 import Videos from "./Videos";
 import { ComponentsContainer } from "./styles";
+
 
 const HomePage = () => {
   return (

@@ -50,8 +50,6 @@ export const drawHands = (predictions, ctx) => {
                 // Set line color
                 ctx.fillStyle = 'indigo';
                 ctx.fill();
-
-                console.log("x,y", x, y)
             }
         })
     }
