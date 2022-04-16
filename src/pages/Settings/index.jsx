@@ -7,7 +7,7 @@ import { FaHandPointLeft, FaHandPointRight, FaHandRock } from "react-icons/fa";
 import { BsFillHandThumbsUpFill, BsFillHandThumbsDownFill, BsArrowRight } from "react-icons/bs";
 import Button from "../../components/Button"
 import { useDispatch, useSelector } from "react-redux";
-import { changeGesture, selectGestureState } from "../../features/gestureSlice";
+import { changeGesture, defaultGestures, selectGestureState } from "../../features/gestureSlice";
 
 
 const Settings = () => {
@@ -32,6 +32,10 @@ const Settings = () => {
   }
   dispatch(changeGesture(updates));
   console.log(gestureState)
+  }
+
+  const handleDefaultGestureState = () => {
+    dispatch(defaultGestures())
   }
 
 
@@ -92,6 +96,11 @@ const Settings = () => {
         <Grid container item justifyContent={'center'}>
             <Button handleClick={handleUpdateGesture}>
                   Set
+            </Button>
+        </Grid>
+        <Grid container item justifyContent={'center'}>
+            <Button handleClick={handleDefaultGestureState}>
+                  Set Default
             </Button>
         </Grid>
       </SettingsContainer>
