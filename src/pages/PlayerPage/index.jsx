@@ -113,7 +113,7 @@ const PlayerPage = () => {
       <PlayerPageContainer>
       {
             showComponent && (
-              <Explore fromPlayerPage handlePlayPause={handlePlayPause} state={state} setState={setState}/>
+              <Explore fromPlayerPage handleFastForward={handleFastForward} handleRewind={handleRewind} state={state} setState={setState}/>
             )
       }
         <VideoContainer ref={playerContainerRef} onMouseOver={() => setShowControls(true)} onMouseLeave={() => setShowControls(false)}>
@@ -153,15 +153,10 @@ const PlayerPage = () => {
           )}
         </VideoContainer>
       </PlayerPageContainer>
-      <Grid container mt={10} width={'100%'} direction={'column'} justifyContent='center'>
+      <Grid container mt={5} width={'100%'} direction={'column'} justifyContent='center'>
           <Grid item xs={12} sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <Typography variant="h2">
-            Use Hand Gesture Recognition
-          </Typography>
-          </Grid>
-          <Grid item xs={12} sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} mt={5} mb={10}>
           <Button handleClick={() => setShowComponent(!showComponent)}>
-            {showComponent ? 'Stop' : 'Start'}
+            {showComponent ? 'Stop Hand Gesture Recognition' : 'Start Hand Gesture Recognition'}
           </Button>
           </Grid>
       </Grid>

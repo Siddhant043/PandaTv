@@ -32,7 +32,7 @@ export const AvatarImageContainer = styled.img`
 export const DropDownMenu = styled.div`
   height: 100px;
   width: 100px;
-  background-color: #090c13;
+  background-color: #fefefe;
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   position: absolute;

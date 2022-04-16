@@ -1,6 +1,6 @@
 import {Finger, FingerCurl, FingerDirection, GestureDescription} from 'fingerpose';
 
-export const openPalmGesture = new GestureDescription("open_palm");
+export const openPalmGesture = new GestureDescription("open_hand");
 
 for(let finger of [Finger.Thumb, Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]){
     openPalmGesture.addCurl(Finger.Pinky, FingerCurl.NoCurl, 1.0)

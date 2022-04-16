@@ -13,4 +13,5 @@ pointLeftGesture.addDirection(Finger.Index, FingerDirection.HorizontalLeft, 0.5)
 
 for(let finger of [Finger.Middle, Finger.Ring, Finger.Pinky]){
     pointLeftGesture.addCurl(finger, FingerCurl.FullCurl, 0.75)
+    pointLeftGesture.addCurl(finger, FingerCurl.HalfCurl, 0.75)
 }
